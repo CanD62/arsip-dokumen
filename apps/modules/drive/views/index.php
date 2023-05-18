@@ -75,21 +75,22 @@
                     <div class="card-header border-0">
                         <h3 class="card-title"><i class="fas fa-archive"></i> Arsip Dokumen</h3>
                         <div class="card-tools">
-                            <button class="btn btn-primary btn-sm">
+                            <a href="<?=base_url('drive/upload');?>" class="btn btn-primary btn-sm">
                                 <i class="fas fa-cloud-upload-alt"></i> Upload Dokumen
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="card-body p-2">
                         <div class="row">
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
-                                    <span class="info-box-icon bg-primary"><i class="far fa-file-word"></i></span>
+                                    <span class="info-box-icon bg-primary"><i class="far fa-file-word fa-lg"></i></span>
 
                                     <div class="info-box-content">
-                                        <span class="info-box-text">SK Mengajar Hitungan Data Murid</span>
-                                        <span class="info-box-number">1,410 KB
-                                            <a href="#" class="btn btn-default btn-sm float-right button-spacing"><i class="fas fa-cloud-download-alt"></i></a>
+                                        <span style="font-size: 13px;">SK Mengajar Hitungan Data Murid</span>
+                                        <span style="font-size: 12px;" class="font-italic">Upload : 29 Desember 2023</span>
+                                           <span style="font-size: 12px;" class="font-weight-bold"> Size : 1,121 KB
+                                             <a href="#" class="btn btn-default btn-sm float-right button-spacing"><i class="fas fa-cloud-download-alt"></i></a>
                                             <a href="#" class="btn btn-secondary btn-sm float-right button-spacing"><i class="fas fa-info-circle"></i></a>
                                         </span>
                                     </div>

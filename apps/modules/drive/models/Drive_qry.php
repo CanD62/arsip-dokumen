@@ -6,23 +6,63 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * OR use the adapter model for easy integration with an existing model
  */
 class Drive_qry extends CI_Model {
+    var $table = 'tb_dokumen';
 
-
-    public function get_user($user_id) {
+    public function getJenis() {
     
         $str = "Select
-        iventory.users.user_id,
-        iventory.users.username,
-        iventory.users.email,
-        iventory.users.level
+        tb_jenis.id_jenis,
+        tb_jenis.nama_jenis,
+        tb_jenis.created_at,
+        tb_jenis.enabled
     From
-        iventory.users
+        tb_jenis
     Where
-        iventory.users.user_id = '$user_id'";
+        tb_jenis.enabled = 1";
+
+        
+     $query = $this->db->query($str);
+     return $query->result_array();
+    }
+
+    public function getTipe($ext) {
+    
+        $str = "Select
+        tb_type.id_type,
+        tb_type.nama_type,
+        tb_type.extensi,
+        tb_type.icon,
+        tb_type.color,
+        tb_type.created_at,
+        tb_type.enabled
+    From
+        tb_type
+    Where
+        tb_type.extensi Like '%$ext%' And
+        tb_type.enabled = 1";
 
         
      $query = $this->db->query($str);
      return $query->row_array();
+    }
+
+    public function save($user)
+    {
+        $this->db->trans_begin();
+        $user['id_dokumen'] = $this->uuid->v4();
+        $this->db->set('created_at', 'NOW()', FALSE);
+        
+        $this->db->insert($this->table, $user);
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            $return = 0;
+        } else {
+            $this->db->trans_commit();
+            $return = 1;
+        }
+
+        return $return;
     }
 
     public function jml_supplier() {
