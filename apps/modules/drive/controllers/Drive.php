@@ -31,6 +31,16 @@ class Drive extends MY_Controller
             ->build('index', $this->data);
     }
 
+    public  function cariDokumen()
+    {
+       $data = $this->input->post();
+
+       $this->data['getDokumen'] = $this->qry->getDokumen($data);
+    //    var_dump($this->data['getDokumen']);
+    sleep(2);
+    $this->load->view('cari', $this->data);
+    }
+
     public function upload()
     {
         // $this->data = array(

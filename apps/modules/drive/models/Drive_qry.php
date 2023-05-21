@@ -70,9 +70,16 @@ class Drive_qry extends CI_Model {
     {
         $tipe = $data['tipe'];
         $jenis = $data['jenis'];
-        !empty($data['tipe']) ?  $sqltipe = " And tb_type.id_type = '$tipe'" : $sqltipe = "";
-        !empty($data['jenis']) ? $sqljenis = " And tb_jenis.id_jenis = '$jenis'" : $sqljenis = "";
-       
+        $sort = $data['sort'];
+        // $urutan = $data['urutan'];
+        $kata_kunci = $data['kata_kunci'];
+
+        !empty($data['tipe']) && $data['tipe'] !== 'all' ?  $sqltipe = " And tb_type.id_type = '$tipe'" : $sqltipe = "";
+        !empty($data['jenis']) && $data['jenis'] !== 'all'? $sqljenis = " And tb_jenis.id_jenis = '$jenis'" : $sqljenis = "";
+        !empty($data['urutan']) && $data['urutan'] == '1' ?  $sqlurutan = " Order By nama_dokumen" : $sqlurutan = " Order By created_at";
+        !empty($data['kata_kunci']) ?  $sqlkatakunci = " And tb_dokumen.nama_dokumen Like '%$kata_kunci%' " : $sqlkatakunci = "";
+
+
         $userid = $this->session->userdata('auth_user');
        $str = "Select
        tb_dokumen.nama_dokumen,
@@ -88,8 +95,8 @@ class Drive_qry extends CI_Model {
        tb_type On tb_type.id_type = tb_dokumen.id_type Inner Join
        tb_jenis On tb_jenis.id_jenis = tb_dokumen.id_jenis
    Where
-       tb_dokumen.user_id = '$userid' $sqltipe $sqljenis";
-       
+       tb_dokumen.user_id = '$userid' $sqlkatakunci $sqltipe $sqljenis $sqlurutan $sort";
+    //    echo $str;exit;
     $query = $this->db->query($str);
      return $query->result_array();
     }
