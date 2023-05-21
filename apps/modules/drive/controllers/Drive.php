@@ -18,16 +18,13 @@ class Drive extends MY_Controller
 
     public function index()
     {
+        // $data['tipe'] = '9c0fd4d2-f523-11ed-9d6f-b445068261b6';
+        // $data['jenis'] = '801bb453-f527-11ed-9d6f-b445068261b6';
+        $this->data['getTipeAll'] = $this->qry->getTipeAll();
+        $this->data['getJenisAll'] = $this->qry->getJenisAll();
+        $this->data['getDokumen'] = $this->qry->getDokumen();
+        // var_dump($this->data['getDokumen']);exit;
 
-        // var_dump($this->session->userdata('auth_user'));exit;
-        //get current user id
-        $id = $this->auth->userid();
-        // var_dump($this->session->userdata());
-        // get user from database
-        $this->load->model('login/user_model');
-        $this->data['user'] = $this->user_model->get('user_id', $id);
-
-        // echo 'Welcome to the super secret section, ' . $user['username'];
         $this->template
             ->title('Arsip Dokumen')
             ->set_layout('main')

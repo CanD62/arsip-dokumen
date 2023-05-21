@@ -10,7 +10,7 @@
                         <h3 class="card-title"> <i class="fas fa-cloud-upload-alt"></i> Upload Dokumen</h3>
                         <div class="card-tools">
                             <a href="<?= base_url('drive'); ?>" class="btn btn-danger btn-sm">
-                                <i class="fas fa-back"></i> Kembali
+                            <i class="fas fa-arrow-alt-circle-left"></i> Kembali
                             </a>
                         </div>
                     </div>
