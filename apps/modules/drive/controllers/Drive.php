@@ -84,10 +84,10 @@ class Drive extends MY_Controller
 
             $file_name = md5($this->session->userdata('auth_user') . floor(microtime(true)));
             $config['upload_path']          = FCPATH . '/files/';
-            $config['allowed_types']        = 'xls|xlsx|doc|docx|gif|jpg|jpeg|png|pdf';
+            $config['allowed_types']        = 'xls|xlsx|doc|docx|ppt|pptx|gif|jpg|jpeg|png|pdf';
             $config['file_name']            = $file_name;
             $config['overwrite']            = true;
-            $config['max_size']             = 1024; // 1MB
+            $config['max_size']             = 10000; // 1MB
             // $config['max_width']            = 1080;
             // $config['max_height']           = 1080;
 
@@ -126,18 +126,18 @@ class Drive extends MY_Controller
     public function update()
     {
         $id_dokumen = $this->input->post('id_dokumen');
-        $file = $this->input->post('file');
+        $file = $this->input->post('file_old');
         $NamaDokumen = $this->input->post('NamaDokumen');
         $DeskripsiDokumen = $this->input->post('DeskripsiDokumen');
         $JenisDokumen = $this->input->post('JenisDokumen');
         $FileDokumen = $_FILES["FileDokumen"]["name"];
-
+// var_dump($file);exit;
         if (!empty($NamaDokumen) && !empty($DeskripsiDokumen) && !empty($JenisDokumen)) {
 
             if(!empty($FileDokumen)){
             $file_name = md5($this->session->userdata('auth_user') . floor(microtime(true)));
             $config['upload_path']          = FCPATH . '/files/';
-            $config['allowed_types']        = 'xls|xlsx|doc|docx|gif|jpg|jpeg|png|pdf';
+            $config['allowed_types']        = 'xls|xlsx|doc|docx|ppt|pptx|gif|jpg|jpeg|png|pdf';
             // $config['allowed_types']        = '*';
             $config['file_name']            = $file_name;
             $config['overwrite']            = true;
@@ -155,7 +155,7 @@ class Drive extends MY_Controller
                 $extensi = $uploaded_data['file_ext'];
                 // $file_size = $uploaded_data['file_size'];
                 $type = $this->qry->getTipe($extensi);
-                unlink('files/'.$file);
+                unlink('./files/'.$file);
 
                 $new_data = [
                     'user_id' => $this->session->userdata('auth_user'),

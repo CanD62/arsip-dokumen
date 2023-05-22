@@ -2,7 +2,7 @@
     <div class="col-md-8">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas <?= $getDokumen['icon']; ?> mr-1"></i> <?= $getDokumen['nama_dokumen']; ?></h3>
+                <h3 class="card-title"><i class="fas <?= $getDokumen['icon']; ?> mr-1"></i> <?= ucwords($getDokumen['nama_dokumen']); ?></h3>
             </div>
             <div class="card-body">
                 <strong><i class="fas fa-file-alt mr-1"></i> Deskripsi Dokumen</strong>

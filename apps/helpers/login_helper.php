@@ -199,6 +199,36 @@ if (!function_exists('tanggal_indo')) {
         return date_format($date, 'Y-m-d H:i:s');
     }
 
+    function formatSize($bytes)
+    {
+        // $bytes = round($bytes);
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' TB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' GB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' MB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' KB';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
+}
     // function tanggal_now(){
     //     return  gmdate('Y-m-d H:i:s', time() + 60 * 60 * 7);
     // }

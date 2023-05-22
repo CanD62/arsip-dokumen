@@ -111,9 +111,9 @@
                                             <span class="info-box-icon <?= $dokumen['color']; ?>"><i class="far <?= $dokumen['icon']; ?> fa-lg"></i></span>
 
                                             <div class="info-box-content">
-                                                <span style="font-size: 13px;"><?= $dokumen['nama_dokumen']; ?></span>
+                                                <span style="font-size: 13px;"><?= ucwords($dokumen['nama_dokumen']); ?></span>
                                                 <span style="font-size: 12px;" class="font-italic">Upload : <?= tanggal_indo($dokumen['created_at']); ?></span>
-                                                <span style="font-size: 12px;" class="font-weight-bold"> Size : <?= $dokumen['size']; ?> KB
+                                                <span style="font-size: 12px;" class="font-weight-bold"> Size : <?= formatSize($dokumen['size']); ?>
                                                     <a href="#" class="btn btn-default btn-sm float-right button-spacing"><i class="fas fa-cloud-download-alt"></i></a>
                                                     <a href="#" onclick="detail('<?= $dokumen['id_dokumen']; ?>')" class="btn btn-secondary btn-sm float-right button-spacing"><i class="fas fa-info-circle"></i></a>
                                                 </span>
