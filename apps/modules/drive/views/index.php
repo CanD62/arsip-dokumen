@@ -114,7 +114,7 @@
                                                 <span style="font-size: 13px;"><?= ucwords($dokumen['nama_dokumen']); ?></span>
                                                 <span style="font-size: 12px;" class="font-italic">Upload : <?= tanggal_indo($dokumen['created_at']); ?></span>
                                                 <span style="font-size: 12px;" class="font-weight-bold"> Size : <?= formatSize($dokumen['size']); ?>
-                                                    <a href="#" class="btn btn-default btn-sm float-right button-spacing"><i class="fas fa-cloud-download-alt"></i></a>
+                                                    <a href="<?=base_url('drive/download/'.$dokumen['id_dokumen']);?>" class="btn btn-default btn-sm float-right button-spacing"><i class="fas fa-cloud-download-alt"></i></a>
                                                     <a href="#" onclick="detail('<?= $dokumen['id_dokumen']; ?>')" class="btn btn-secondary btn-sm float-right button-spacing"><i class="fas fa-info-circle"></i></a>
                                                 </span>
                                             </div>

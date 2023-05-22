@@ -218,4 +218,24 @@ class Drive extends MY_Controller
         redirect('drive');
        }
     }
+
+    public  function download()
+    {
+        $data['id_dokumen'] = $this->uri->segment(3);
+        isset($this->qry->getDokumen($data)['0']) ? $this->data['getDokumen'] = $this->qry->getDokumen($data)['0'] : $this->data['getDokumen'] = '';
+        if($this->data['getDokumen'] !== 1){
+            $file = $this->data['getDokumen']['file'];
+            $extensi = explode('.',$file);
+            $nama_dokumen = $this->data['getDokumen']['nama_dokumen'];
+            $files = read_file('./files/'.$file); 
+            force_download(ucwords($nama_dokumen).'.'.$extensi[1], $files);
+        } else{
+            $msg = array('title' => 'Gagal', 'message' => 'Dokumen Gagal Didownload.', 'class' => 'error');
+            $this->session->set_flashdata('msg', $msg);
+            redirect('drive');
+
+        }
+      
+
+    }
 }
