@@ -65,6 +65,26 @@ class Drive_qry extends CI_Model {
         return $return;
     }
 
+
+    public function update($data, $id_dokumen)
+    {
+        $this->db->trans_begin();
+        $this->db->set('update_at', 'NOW()', FALSE);
+        $this->db->where('id_dokumen', $id_dokumen);
+        $this->db->update($this->table, $data);
+           
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            $return = 0;
+        } else {
+            $this->db->trans_commit();
+            $return = 1;
+        }
+
+        return $return;
+    }
+
     
     public function getDokumen($data = null)
     {
@@ -85,6 +105,7 @@ class Drive_qry extends CI_Model {
         $userid = $this->session->userdata('auth_user');
        $str = "Select
        tb_dokumen.id_dokumen,
+       tb_jenis.id_jenis,
        tb_dokumen.nama_dokumen,
        tb_dokumen.deskripsi,
        tb_dokumen.file,

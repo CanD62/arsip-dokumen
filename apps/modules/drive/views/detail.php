@@ -38,7 +38,7 @@
             </div>
             <div class="card-body">
                 <div class="text-center">
-                    <a href="#" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt mr-1"></i> Edit</a>
+                    <a href="<?=base_url('drive/edit/'.$getDokumen['id_dokumen']);?>" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt mr-1"></i> Edit</a>
                     <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
                     <!-- <a href="#" class="btn btn-sm btn-default"><i class="fas fa-cloud-download-alt mr-1"></i> Download</a> -->
                 </div>

@@ -122,7 +122,13 @@
 
                                     </div>
 
-                            <?php }
+                                <?php
+                                }
+                                } else {
+                                ?>
+                                <div class="col-12"><button type="button" class="btn btn-block bg-gradient-danger btn-lg">Belum ada dokumen</button></div>
+
+                            <?php
                             } ?>
                             <!-- </div> -->
                             <!-- disini -->
@@ -137,26 +143,26 @@
     <!-- /.container-fluid -->
 </div>
 <div class="modal fade" id="Modal">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Extra Large Modal</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body" id="show-detail">
-              <!-- <p>One fine body&hellip;</p> -->
+                <!-- <p>One fine body&hellip;</p> -->
             </div>
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
-              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
-          </div>
-          <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
-      </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <script>
     function detail(id_dokumen) {
         $("#Modal").modal("show");
@@ -175,7 +181,7 @@
                 $("#show-detail").html("Terjadi kesalahan...");
             },
             beforeSend: function() {
-                $("#show-detail").html("Sedang memuat...");
+                $("#show-detail").html('<div class="col-6 text-right"><i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Sedang memuat...</div>');
             },
         });
     }
