@@ -111,15 +111,18 @@ class Drive extends MY_Controller
                     'size' => $uploaded_data['file_size'],
                 ];
                 if ($this->qry->save($new_data)) {
-                    echo 'Berhasil diuplaod';
-                    exit;
-                    $this->session->set_flashdata('message', 'Berhasil diupload!');
-                    redirect(site_url('drive'));
+                    // echo 'Berhasil diuplaod';
+                    $msg = array('title' => 'Berhasil', 'message' => 'Dokumen Berhasil Diupload.', 'class' => 'success');
+                    $this->session->set_flashdata('msg', $msg);
+                    redirect('drive');
                 }
             }
         } else {
 
-            echo 'masih ada yang kosong';
+            // echo 'masih ada yang kosong';
+            $msg = array('title' => 'Gagal', 'message' => 'Dokumen Gagal Diupload.', 'class' => 'error');
+            $this->session->set_flashdata('msg', $msg);
+            redirect('drive');
         }
     }
 
@@ -167,10 +170,10 @@ class Drive extends MY_Controller
                     'size' => $uploaded_data['file_size'],
                 ];
                 if ($this->qry->update($new_data, $id_dokumen)) {
-                    echo 'Berhasil diuplaod';
-                    exit;
-                    $this->session->set_flashdata('message', 'Berhasil diupload!');
-                    redirect(site_url('drive'));
+                    // echo 'Berhasil diuplaod';
+                    $msg = array('title' => 'Berhasil', 'message' => 'Dokumen Berhasil Diupdate.', 'class' => 'success');
+                    $this->session->set_flashdata('msg', $msg);
+                    redirect('drive');
                 }
             }
         } else{
@@ -186,14 +189,16 @@ class Drive extends MY_Controller
             ];
             if ($this->qry->update($new_data, $id_dokumen)) {
                 echo 'Berhasil diupdate';
-                exit;
-                $this->session->set_flashdata('message', 'Berhasil diupload!');
-                redirect(site_url('drive'));
+                    $msg = array('title' => 'Berhasil', 'message' => 'Dokumen Berhasil Diupdate.', 'class' => 'success');
+                    $this->session->set_flashdata('msg', $msg);
+                    redirect('drive');
             }
         }
         } else {
 
-            echo 'masih ada yang kosong';
+            $msg = array('title' => 'Gagal', 'message' => 'Dokumen Gagal Diupload.', 'class' => 'error');
+            $this->session->set_flashdata('msg', $msg);
+            redirect('drive');
         }
     }
 }
