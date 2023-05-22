@@ -105,7 +105,7 @@
                             if (!empty($getDokumen)) {
                                 foreach ($getDokumen as $dokumen) {
                             ?>
-                            
+
                                     <div class="col-md-3 col-sm-6 col-12">
                                         <div class="info-box">
                                             <span class="info-box-icon <?= $dokumen['color']; ?>"><i class="far <?= $dokumen['icon']; ?> fa-lg"></i></span>
@@ -115,13 +115,13 @@
                                                 <span style="font-size: 12px;" class="font-italic">Upload : <?= tanggal_indo($dokumen['created_at']); ?></span>
                                                 <span style="font-size: 12px;" class="font-weight-bold"> Size : <?= $dokumen['size']; ?> KB
                                                     <a href="#" class="btn btn-default btn-sm float-right button-spacing"><i class="fas fa-cloud-download-alt"></i></a>
-                                                    <a href="#" class="btn btn-secondary btn-sm float-right button-spacing"><i class="fas fa-info-circle"></i></a>
+                                                    <a href="#" onclick="detail('<?= $dokumen['id_dokumen']; ?>')" class="btn btn-secondary btn-sm float-right button-spacing"><i class="fas fa-info-circle"></i></a>
                                                 </span>
                                             </div>
                                         </div>
 
                                     </div>
-                                    
+
                             <?php }
                             } ?>
                             <!-- </div> -->
@@ -136,7 +136,49 @@
     </div>
     <!-- /.container-fluid -->
 </div>
+<div class="modal fade" id="Modal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Extra Large Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="show-detail">
+              <!-- <p>One fine body&hellip;</p> -->
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
 <script>
+    function detail(id_dokumen) {
+        $("#Modal").modal("show");
+        $.ajax({
+            type: "POST",
+            data: {
+                id_dokumen: id_dokumen
+            },
+            url: '<?= base_url('drive/detail'); ?>',
+            dataType: "html",
+            success: function(data) {
+                $(".modal-title").html('<i class="fas fa-archive"></i> Detail Dokumen');
+                $("#show-detail").html(data);
+            },
+            pesan: function() {
+                $("#show-detail").html("Terjadi kesalahan...");
+            },
+            beforeSend: function() {
+                $("#show-detail").html("Sedang memuat...");
+            },
+        });
+    }
     $(document).ready(function() {
         $('.select2').select2({});
 

@@ -68,20 +68,23 @@ class Drive_qry extends CI_Model {
     
     public function getDokumen($data = null)
     {
-        $tipe = $data['tipe'];
-        $jenis = $data['jenis'];
-        $sort = $data['sort'];
+        $tipe = isset($data['tipe']) ? $data['tipe'] : '';
+        $jenis = isset($data['jenis']) ? $data['jenis'] : '';
+        $sort = isset($data['sort']) ? $data['sort'] : '';
         // $urutan = $data['urutan'];
-        $kata_kunci = $data['kata_kunci'];
+        $kata_kunci = isset($data['kata_kunci']) ? $data['kata_kunci'] : '';
+        $id_dokumen = isset($data['id_dokumen']) ? $data['id_dokumen'] : '';
 
         !empty($data['tipe']) && $data['tipe'] !== 'all' ?  $sqltipe = " And tb_type.id_type = '$tipe'" : $sqltipe = "";
         !empty($data['jenis']) && $data['jenis'] !== 'all'? $sqljenis = " And tb_jenis.id_jenis = '$jenis'" : $sqljenis = "";
         !empty($data['urutan']) && $data['urutan'] == '1' ?  $sqlurutan = " Order By nama_dokumen" : $sqlurutan = " Order By created_at";
         !empty($data['kata_kunci']) ?  $sqlkatakunci = " And tb_dokumen.nama_dokumen Like '%$kata_kunci%' " : $sqlkatakunci = "";
+        !empty($data['id_dokumen']) ?  $sqldokumen = " And tb_dokumen.id_dokumen = '$id_dokumen'" : $sqldokumen = "";
 
 
         $userid = $this->session->userdata('auth_user');
        $str = "Select
+       tb_dokumen.id_dokumen,
        tb_dokumen.nama_dokumen,
        tb_dokumen.deskripsi,
        tb_dokumen.file,
@@ -89,13 +92,15 @@ class Drive_qry extends CI_Model {
        tb_dokumen.created_at,
        tb_type.icon,
        tb_type.color,
-       tb_jenis.nama_jenis
+       tb_jenis.nama_jenis,
+       tb_type.nama_type,
+       tb_dokumen.update_at
    From
        tb_dokumen Inner Join
        tb_type On tb_type.id_type = tb_dokumen.id_type Inner Join
        tb_jenis On tb_jenis.id_jenis = tb_dokumen.id_jenis
    Where
-       tb_dokumen.user_id = '$userid' $sqlkatakunci $sqltipe $sqljenis $sqlurutan $sort";
+       tb_dokumen.user_id = '$userid' $sqldokumen $sqlkatakunci $sqltipe $sqljenis $sqlurutan $sort";
     //    echo $str;exit;
     $query = $this->db->query($str);
      return $query->result_array();
