@@ -188,7 +188,7 @@ class Drive extends MY_Controller
                 // 'size' => $uploaded_data['file_size'],
             ];
             if ($this->qry->update($new_data, $id_dokumen)) {
-                echo 'Berhasil diupdate';
+                // echo 'Berhasil diupdate';
                     $msg = array('title' => 'Berhasil', 'message' => 'Dokumen Berhasil Diupdate.', 'class' => 'success');
                     $this->session->set_flashdata('msg', $msg);
                     redirect('drive');
@@ -200,5 +200,22 @@ class Drive extends MY_Controller
             $this->session->set_flashdata('msg', $msg);
             redirect('drive');
         }
+    }
+
+    public  function hapus()
+    {
+        $data['id_dokumen'] = $this->uri->segment(3);
+        $new_data = [
+            'enabled' => 0,
+        ];
+       if($this->qry->update($new_data, $data['id_dokumen'])){
+        $msg = array('title' => 'Berhasil', 'message' => 'Dokumen Berhasil Dihapus.', 'class' => 'success');
+        $this->session->set_flashdata('msg', $msg);
+        redirect('drive');
+       } else{
+        $msg = array('title' => 'Gagal', 'message' => 'Dokumen Gagal Dihapus.', 'class' => 'error');
+        $this->session->set_flashdata('msg', $msg);
+        redirect('drive');
+       }
     }
 }

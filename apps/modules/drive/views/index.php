@@ -166,6 +166,7 @@
 <script>
     function detail(id_dokumen) {
         $("#Modal").modal("show");
+        $(".modal-title").html('');
         $.ajax({
             type: "POST",
             data: {

@@ -121,7 +121,7 @@ class Drive_qry extends CI_Model {
        tb_type On tb_type.id_type = tb_dokumen.id_type Inner Join
        tb_jenis On tb_jenis.id_jenis = tb_dokumen.id_jenis
    Where
-       tb_dokumen.user_id = '$userid' $sqldokumen $sqlkatakunci $sqltipe $sqljenis $sqlurutan $sort";
+       tb_dokumen.user_id = '$userid' And tb_dokumen.enabled=1 $sqldokumen $sqlkatakunci $sqltipe $sqljenis $sqlurutan $sort";
     //    echo $str;exit;
     $query = $this->db->query($str);
      return $query->result_array();

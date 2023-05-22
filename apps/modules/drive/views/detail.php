@@ -39,7 +39,7 @@
             <div class="card-body">
                 <div class="text-center">
                     <a href="<?=base_url('drive/edit/'.$getDokumen['id_dokumen']);?>" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt mr-1"></i> Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
+                    <a href="#" onclick="hapus('<?= $getDokumen['id_dokumen']; ?>', '<?= ucwords($getDokumen['nama_dokumen']); ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
                     <!-- <a href="#" class="btn btn-sm btn-default"><i class="fas fa-cloud-download-alt mr-1"></i> Download</a> -->
                 </div>
             </div>
@@ -47,3 +47,11 @@
     </div>
 
 </div>
+<script>
+    function hapus(id_dokumen,nama_dokumen) {
+        // $("#Modal").modal("hide");
+        $("#Modal").modal("show");
+        $(".modal-title").html('<i class="fas fa-trash-alt"></i> Konfirmasi Hapus Dokumen');
+        $("#show-detail").html('Apakah Anda Yakin, akan menghapus data '+nama_dokumen+'?  <div class="text-center"><a href="<?=base_url('drive/hapus/');?>'+id_dokumen+'" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-1"></i> Ya, Hapus</a></div>');
+    }
+    </script>
