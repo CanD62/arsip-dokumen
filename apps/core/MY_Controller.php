@@ -33,6 +33,7 @@ class MY_Controller extends CI_Controller{
         $user = $this->user_model->get($userid);
         $this->session->set_userdata('level',  $user['level']);
         $this->session->set_userdata('username',  $user['username']);
+        $this->session->set_userdata('nama_lengkap',  $user['nama_lengkap']);
         // $username = $this->session->userdata('username');
         // $personid = $this->session->userdata('personid');
 

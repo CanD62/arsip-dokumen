@@ -21,30 +21,29 @@
                                     <th>Nama Dokumen</th>
                                     <th>Tipe Dokumen</th>
                                     <th>Jenis Dokumen</th>
-                                    <th>Nama Pengguna</th>
                                     <th>Tanggal Upload</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- disini -->
                                 <?php
-                                if(!empty($getDokumen)){
-                                foreach ($getDokumen as $dokumen) {
+                                if (!empty($getDokumen)) {
+                                    foreach ($getDokumen as $dokumen) {
                                 ?>
-                                    <tr>
-                                        <td>
-                                            <button class="btn <?=$dokumen['color'];?>">
-                                                <i class="fas <?=$dokumen['icon'];?>"></i> </button>
-                                                <?=ucwords($dokumen['nama_dokumen']);?>
-                                        </td>
-                                        <td><?=$dokumen['nama_type'];?></td>
-                                        <td><?=$dokumen['nama_jenis'];?></td>
-                                        <td><?=ucwords($dokumen['nama_lengkap']);?></td>
-                                        <td><?=tanggal_indo($dokumen['created_at']);?></td>
-                                    </tr>
-                                <?php } } else {?>
+                                        <tr>
+                                            <td>
+                                                <button class="btn <?= $dokumen['color']; ?>">
+                                                    <i class="fas <?= $dokumen['icon']; ?>"></i> </button>
+                                                <?= ucwords($dokumen['nama_dokumen']); ?>
+                                            </td>
+                                            <td><?= $dokumen['nama_type']; ?></td>
+                                            <td><?= $dokumen['nama_jenis']; ?></td>
+                                            <td><?= tanggal_indo($dokumen['created_at']); ?></td>
+                                        </tr>
+                                    <?php }
+                                } else { ?>
                                     <td colspan="4" class="text-center"> Data Tidak Tersedia</td>
-                                <?php }?>
+                                <?php } ?>
                                 <!-- disni -->
                             </tbody>
                         </table>

@@ -16,20 +16,29 @@ class Home extends MY_Controller {
     }
 
 	public function index() {
-        
-              
-        //get current user id
-        $id = $this->auth->userid();
-        // var_dump($this->session->userdata());
-        // get user from database
-        $this->load->model('login/user_model');
-        $this->data['user'] = $this->user_model->get('user_id', $id);
-        
-        // echo 'Welcome to the super secret section, ' . $user['username'];
+        if($this->session->userdata('level') == 1){
+        $this->data['jml_admin'] = $this->qry->jml_admin();
+        $this->data['jml_pendidik'] = $this->qry->jml_pendidik();
+        $this->data['jml_kependidikan'] = $this->qry->jml_kependidikan();
+        $this->data['jml_dokumen'] = $this->qry->jml_dokumen();
+        $this->data['getDokumen'] = $this->qry->getDokumen();
+
         $this->template
         ->title('Dashboard')
         ->set_layout('main')
         ->build('index', $this->data);
+        } else {
+            $this->data['jml_admin'] = $this->qry->jml_admin();
+            $this->data['jml_pendidik'] = $this->qry->jml_pendidik();
+            $this->data['jml_kependidikan'] = $this->qry->jml_kependidikan();
+            $this->data['jml_dokumen'] = $this->qry->jml_dokumen();
+            $this->data['getDokumen'] = $this->qry->getDokumen($this->session->userdata('auth_user'));
+    
+            $this->template
+            ->title('Dashboard')
+            ->set_layout('main')
+            ->build('index2', $this->data);  
+        }
     }
 
  
