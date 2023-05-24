@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-                <div class="card card-warning">
+                <div class="card card-danger">
                     <div class="card-header border-0">
                         <h3 class="card-title">Arsip Dokumen Terakhir Upload</h3>
                         <!-- <div class="card-tools">
@@ -51,49 +51,34 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <!-- Info Boxes Style 2 -->
-                <div class="info-box mb-3 bg-primary">
-                    <span class="info-box-icon"><i class="fas fa-users"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Tenaga Pendidik</span>
-                        <span class="info-box-number"><?= $jml_pendidik['jml']; ?></span>
+                <!-- Widget: user widget style 2 -->
+                <div class="card card-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-danger">
+                        <div class="widget-user-image">
+                            <img class="img-circle elevation-2" src="<?= base_url('assets/dist/img/user2-160x160.jpg'); ?>" alt="User Avatar">
+                        </div>
+                        <!-- /.widget-user-image -->
+                        <h3 class="widget-user-username"><?= ucwords($getUser['nama_lengkap']); ?></h3>
+                        <p class="widget-user-desc"><?= $getUser['nip']; ?> - <?= $getUser['status']; ?></p>
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-                <div class="info-box mb-3 bg-info">
-                    <span class="info-box-icon"><i class="fas fa-users"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Tenaga Kependidikan</span>
-                        <span class="info-box-number"><?= $jml_kependidikan['jml']; ?></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-                <div class="info-box mb-3 bg-success">
-                    <span class="info-box-icon"><i class="fas fa-file"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Dokumen</span>
-                        <span class="info-box-number"><?= $jml_dokumen['jml']; ?></span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-                <div class="info-box mb-3 bg-danger">
-                    <span class="info-box-icon"><i class="fas fa-user-secret"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Admin</span>
-                        <span class="info-box-number"><?= $jml_admin['jml']; ?></span>
+                    <div class="card-footer p-0">
+                        <ul class="nav flex-column">
+                            <!-- disini -->
+                            <?php
+                            foreach ($getDokumenUser as $doc) {
+                            ?>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                    <?=$doc['nama_jenis'];?> <span class="float-right badge <?=$doc['color'];?>"><?=$doc['jml'];?></span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                            <!-- disini -->
+                        </ul>
                     </div>
                 </div>
-                <!-- /.info-box -->
-
-
-
+                <!-- /.widget-user -->
             </div>
             <!-- /.col-md-6 -->
 

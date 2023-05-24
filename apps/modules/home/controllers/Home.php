@@ -28,10 +28,9 @@ class Home extends MY_Controller {
         ->set_layout('main')
         ->build('index', $this->data);
         } else {
-            $this->data['jml_admin'] = $this->qry->jml_admin();
-            $this->data['jml_pendidik'] = $this->qry->jml_pendidik();
-            $this->data['jml_kependidikan'] = $this->qry->jml_kependidikan();
-            $this->data['jml_dokumen'] = $this->qry->jml_dokumen();
+           
+            $this->data['getUser'] = $this->qry->getUser();
+            $this->data['getDokumenUser'] = $this->qry->getDokumenUser();
             $this->data['getDokumen'] = $this->qry->getDokumen($this->session->userdata('auth_user'));
     
             $this->template

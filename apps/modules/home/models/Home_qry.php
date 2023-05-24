@@ -109,5 +109,53 @@ class Home_qry extends CI_Model {
     }
 
 
+    public function getUser() {
+    
+        $userid = $this->session->userdata('auth_user');
+
+        $str = "Select
+        users.user_id,
+        users.nip,
+        users.nama_lengkap,
+        users.level,
+        case  when users.level =1 then 'Admin'
+                  when users.level =2 then 'Tenaga Pendidik'
+                  when users.level =3 then 'Tenaga Kependidikan'
+             end AS status
+    From
+        users
+    Where
+        users.user_id = '$userid'";
+        
+     $query = $this->db->query($str);
+     return $query->row_array();
+    }
+   
+    public function getDokumenUser() {
+    
+        $userid = $this->session->userdata('auth_user');
+
+        $str = "Select
+        Count(tb_dokumen.user_id) As jml,
+        tb_type.color,
+        tb_jenis.nama_jenis
+    From
+        tb_dokumen Inner Join
+        tb_type On tb_type.id_type = tb_dokumen.id_type Inner Join
+        tb_jenis On tb_jenis.id_jenis = tb_dokumen.id_jenis
+    Where
+        tb_dokumen.user_id = '$userid' And
+        tb_dokumen.enabled = 1
+    Group By
+        tb_dokumen.user_id,
+        tb_type.color,
+        tb_jenis.nama_jenis,
+        tb_dokumen.user_id";
+        
+     $query = $this->db->query($str);
+     return $query->result_array();
+    }
+
+
 
 }
