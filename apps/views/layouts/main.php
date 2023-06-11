@@ -34,8 +34,8 @@
   <script src="<?= base_url('assets/plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
   <!-- PACE -->
   <link rel="stylesheet" href="<?= base_url('assets/plugins/pace-progress/themes/black/pace-theme-flat-top.css'); ?>">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
   <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
   <style>
@@ -111,8 +111,8 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item">
+              <a href="<?= base_url('home'); ?>" class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : ''; ?> <?= $this->uri->segment(1) == 'home' ? 'active' : ''; ?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -120,81 +120,62 @@
               </a>
 
             </li>
-            <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Widgets
-                  <span class="right badge badge-danger">New</span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Forms
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/forms/general.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General Elements</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/advanced.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Advanced Elements</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/editors.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Editors</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/validation.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Validation</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                  Tables
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/tables/simple.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Simple Tables</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/tables/data.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>DataTables</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/tables/jsgrid.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>jsGrid</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
 
-            <li class="nav-header">LABELS</li>
+            <?php if ($this->session->userdata('level') == '2') : ?>
+              <li class="nav-item">
+                <a href="<?= base_url('drive'); ?>" class="nav-link  <?= $this->uri->segment(1) == 'drive' ? 'active' : ''; ?>">
+                  <i class="nav-icon fas fa-archive"></i>
+                  <p>
+                    Arsip Dokumen
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('logout'); ?>" class="nav-link">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>
+                    Keluar
+                  </p>
+                </a>
+              </li>
+            <?php elseif ($this->session->userdata('level') == '1') : ?>
+              <li class="nav-item <?= $this->uri->segment(1) =='users' ? 'menu-open' : ($this->uri->segment(1) =='jenis' ? 'menu-open' : '');?>">
+                <a href="#" class="nav-link <?= $this->uri->segment(1) =='users' ? 'active' : ($this->uri->segment(1) =='jenis' ? 'active' : '');?>">
+                  <i class="nav-icon fas fa-database"></i>
+                  <p>
+                    Master
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="<?= base_url('jenis'); ?>" class="nav-link <?= $this->uri->segment(1) == 'jenis' ? 'active' : ''; ?>">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Jenis Dokumen</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?= base_url('users'); ?>" class="nav-link <?= $this->uri->segment(1) == 'users' ? 'active' : ''; ?>">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Pengguna</p>
+                    </a>
+                  </li>
+                </ul>
+              <li class="nav-item">
+                <a href="<?= base_url('logout'); ?>" class="nav-link">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>
+                    Keluar
+                  </p>
+                </a>
+              </li>
+              </li>
+
+
+
+
+            <?php endif; ?>
+            <!-- <li class="nav-header">LABELS</li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>
@@ -212,7 +193,7 @@
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>Informational</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -312,18 +293,18 @@
   <!-- PACE -->
   <script src="<?= base_url('assets/plugins/pace-progress/pace.min.js'); ?>"></script>
   <!-- DataTables  & Plugins -->
-<script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/jszip/jszip.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/pdfmake/pdfmake.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/pdfmake/vfs_fonts.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
-<script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/jszip/jszip.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/pdfmake/pdfmake.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/pdfmake/vfs_fonts.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
+  <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
 
 </body>
 
