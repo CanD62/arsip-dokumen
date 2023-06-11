@@ -11,7 +11,7 @@ class Login extends CI_Controller {
             redirect('home');
         }
         
-        $error = '';
+        $this->data['error'] = '';
         
         // form submitted
         if ($this->input->post('username') && $this->input->post('password')) {
@@ -28,14 +28,17 @@ class Login extends CI_Controller {
                     $this->auth->login($user['user_id'], $remember);
                     redirect('home');
                 } else {
-                    $error = 'Wrong password';
+                    $this->data['error'] = 'Wrong password';
                 }
             } else {
-                $error = 'User does not exist';
+                $this->data['error'] = 'User does not exist';
             }
         }
         
         // show login form
-        $this->load->view('login', array('error' => $error));
+        $this->template
+        ->title('Masuk - Arsip Dokumen')
+        ->set_layout('home')
+        ->build('login', $this->data);
     }
 }
