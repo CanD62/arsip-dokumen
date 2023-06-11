@@ -58,7 +58,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Total Tenaga Pendidik</span>
-                        <span class="info-box-number"><?= $jml_pendidik['jml']; ?></span>
+                        <span class="info-box-number"><?= isset($jml_pendidik['jml']) ? $jml_pendidik['jml'] : 0; ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -68,7 +68,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Total Tenaga Kependidikan</span>
-                        <span class="info-box-number"><?= $jml_kependidikan['jml']; ?></span>
+                        <span class="info-box-number"><?= isset($jml_kependidikan['jml']) ? $jml_kependidikan['jml'] : 0 ; ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -78,7 +78,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Total Dokumen</span>
-                        <span class="info-box-number"><?= $jml_dokumen['jml']; ?></span>
+                        <span class="info-box-number"><?= isset($jml_dokumen['jml']) ? $jml_dokumen['jml'] : 0; ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -88,7 +88,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Total Admin</span>
-                        <span class="info-box-number"><?= $jml_admin['jml']; ?></span>
+                        <span class="info-box-number"><?= isset($jml_admin['jml']) ? $jml_admin['jml'] : 0; ?></span>
                     </div>
                 </div>
                 <!-- /.info-box -->
