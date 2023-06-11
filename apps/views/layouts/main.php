@@ -121,7 +121,7 @@
 
             </li>
 
-            <?php if ($this->session->userdata('level') == '2') : ?>
+            <?php if ($this->session->userdata('level') == '2' || $this->session->userdata('level') == '3') : ?>
               <li class="nav-item">
                 <a href="<?= base_url('drive'); ?>" class="nav-link  <?= $this->uri->segment(1) == 'drive' ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-archive"></i>
