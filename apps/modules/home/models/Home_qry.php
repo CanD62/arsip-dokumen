@@ -44,7 +44,7 @@ class Home_qry extends CI_Model {
         $str = "Select
         count(user_id) as jml
     From
-        users where level=3
+        users where level=2
     Group By
         users.level";
 
@@ -58,7 +58,7 @@ class Home_qry extends CI_Model {
         $str = "Select
         count(user_id) as jml
     From
-        users where level=2
+        users where level=3
     Group By
         users.level";
 
