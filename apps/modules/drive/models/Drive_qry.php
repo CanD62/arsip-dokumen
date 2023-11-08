@@ -158,7 +158,13 @@ class Drive_qry extends CI_Model {
      return $query->result_array();
     }
 
-    
+    public function hapus($id_dokumen)
+    {
+        $this->db->where('id_dokumen', $id_dokumen);
+        $this->db->delete('tb_dokumen');
+        $query = $this->db->affected_rows();
+        return $query;
+    }
 
 
 

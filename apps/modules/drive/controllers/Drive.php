@@ -205,10 +205,17 @@ class Drive extends MY_Controller
     public  function hapus()
     {
         $data['id_dokumen'] = $this->uri->segment(3);
-        $new_data = [
-            'enabled' => 0,
-        ];
-       if($this->qry->update($new_data, $data['id_dokumen'])){
+        // $new_data = [
+        //     'enabled' => 0,
+        // ];
+        isset($this->qry->getDokumen($data)['0']) ? $this->data['getDokumen'] = $this->qry->getDokumen($data)['0'] : $this->data['getDokumen'] = '';
+       if($this->qry->hapus($data['id_dokumen'])){
+        // var_dump($this->data['getDokumen']);exit;
+        if($this->data['getDokumen'] !== 1){
+            $file = $this->data['getDokumen']['file'];
+            unlink('./files/'.$file);
+
+        }
         $msg = array('title' => 'Berhasil', 'message' => 'Dokumen Berhasil Dihapus.', 'class' => 'success');
         $this->session->set_flashdata('msg', $msg);
         redirect('drive');
